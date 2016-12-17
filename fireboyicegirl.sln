@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fireboyicegirl", "fireboyicegirl\fireboyicegirl\fireboyicegirl.csproj", "{F2C539E0-E74B-483D-9A34-8DA5C5D86EAB}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "fireboyicegirlContent", "fireboyicegirl\fireboyicegirlContent\fireboyicegirlContent.contentproj", "{7CB6762A-7E13-4054-90AD-96C3E2A5AF10}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2C539E0-E74B-483D-9A34-8DA5C5D86EAB}.Debug|x86.ActiveCfg = Debug|x86
+		{F2C539E0-E74B-483D-9A34-8DA5C5D86EAB}.Debug|x86.Build.0 = Debug|x86
+		{F2C539E0-E74B-483D-9A34-8DA5C5D86EAB}.Release|x86.ActiveCfg = Release|x86
+		{F2C539E0-E74B-483D-9A34-8DA5C5D86EAB}.Release|x86.Build.0 = Release|x86
+		{7CB6762A-7E13-4054-90AD-96C3E2A5AF10}.Debug|x86.ActiveCfg = Debug|x86
+		{7CB6762A-7E13-4054-90AD-96C3E2A5AF10}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
