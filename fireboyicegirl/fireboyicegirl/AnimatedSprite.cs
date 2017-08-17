@@ -11,16 +11,15 @@ namespace fireboyicegirl
     public abstract class AnimatedSprite : Sprite
     {
         protected int _currentFrame;
-        protected Vector2 _origin;
-        protected Vector2 _scale;
-        protected TimeSpan _animationTime;
+        protected TimeSpan _animationTime; 
         protected TimeSpan _elapsedTime;
-        protected SpriteEffects _effects;
+        protected Rectangle _hitbox;
         protected AnimationType _animType;
         protected AnimationType _lastAnimation;
-        protected Dictionary<AnimationType, List<Rectangle>> _animations;
+        protected Dictionary<AnimationType, List<Rectangle>> _animations; //future note: List<Frames>, Frame: rectangle, origin
         protected int Gamespeed = 5;
-        private int frameDifference = 1;
+
+        public Rectangle Hitbox { get { return _hitbox; } }
 
         public AnimatedSprite(Texture2D image, Vector2 position)
             : base(image, position)
@@ -39,73 +38,25 @@ namespace fireboyicegirl
             _scale = scale;
         }
 
-        protected void AnimationUpdate(GameTime gameTime)
+        protected virtual void AnimationUpdate(GameTime gameTime)
         {
             _elapsedTime += gameTime.ElapsedGameTime;
 
-            if (_elapsedTime >= _animationTime)
+            if (_elapsedTime <= _animationTime)
             {
-                _currentFrame += frameDifference;
+                _currentFrame++;
+                _elapsedTime = TimeSpan.Zero;
 
                 if (_currentFrame >= _animations[_animType].Count)
                 {
-                    frameDifference *= -1;
-                    _currentFrame += frameDifference;
+                    _currentFrame = 0;
                 }
-                else if (_currentFrame <= 0)
-                {
-                    frameDifference *= -1;
-                    _currentFrame += frameDifference;
-                }
-
-                _elapsedTime = TimeSpan.Zero;
             }
         }
 
-        public void Update(KeyboardState ks)
+        public override void Draw(SpriteBatch spritbatch)
         {
-            if (ks.IsKeyDown(Keys.A))
-            {
-                _position.X -= Gamespeed;
-                _effects = SpriteEffects.FlipHorizontally;
-                _animType = AnimationType.Walking;
-
-                if (_lastAnimation != _animType)
-                {
-                    _currentFrame = 0;
-                }
-            }
-            else if (ks.IsKeyDown(Keys.D))
-            {
-                if (_effects == SpriteEffects.FlipHorizontally)
-                {
-                    _effects = SpriteEffects.None;
-                }
-                //set moving animation
-                _position.X += Gamespeed;
-                _animType = AnimationType.Walking;
-
-                if (_lastAnimation != _animType)
-                {                    
-                    _currentFrame = 0;
-                }
-            }
-            else
-            {
-                _animType = AnimationType.Idle;
-
-                if (_lastAnimation != _animType)
-                {                    
-                    _currentFrame = 0;
-                }
-            }
-
-            _lastAnimation = _animType;
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(_texture, _position, _animations[_animType][_currentFrame], Color.White, 0, _origin, _scale, _effects, 0);
+            spritbatch.Draw(_texture, _position, _animations[_animType][_currentFrame], Color.White, 0f, _origin, _scale, _effects, 0f);
         }
     }
 }
